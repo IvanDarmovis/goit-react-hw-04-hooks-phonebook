@@ -14,28 +14,22 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    // name: '',
-    // number: '',
   };
 
   onInputChange = ev => {
     this.setState({ [ev.currentTarget.name]: ev.currentTarget.value });
-    console.log(this.state);
   };
 
-  onFormSubmit = ev => {
-    ev.preventDefault();
+  onFormSubmit = data => {
     this.setState(prevState => ({
       contacts: [
         ...prevState.contacts,
         {
           id: uniqid(),
-          name: prevState.name,
-          number: prevState.number,
+          ...data,
         },
       ],
     }));
-    this.setState({ name: '', number: '' });
   };
 
   render() {
