@@ -1,22 +1,42 @@
 import React, { Component } from 'react';
+import uniqid from 'uniqid';
 import InputForm from './InputForm/InputForm';
 import ContactList from './ContactsList/ContactsList';
 import Section from './Section/Section';
+import Filter from './ContactsList/Filter';
 
 class App extends Component {
   state = {
-    contacts: [],
-    name: '',
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
+    // name: '',
+    // number: '',
+  };
+
+  onInputChange = ev => {
+    this.setState({ [ev.currentTarget.name]: ev.currentTarget.value });
+    console.log(ev.currentTarget.name);
+    console.log(ev.currentTarget.value);
   };
 
   onFormSubmit = ev => {
     ev.preventDefault();
-    console.log(ev.target[0].value);
-    // this.setState(prevState => )
-  };
-
-  onInputChange = ev => {
-    // console.log(ev.target.value);
+    this.setState(prevState => ({
+      contacts: [
+        ...prevState.contacts,
+        {
+          id: uniqid(),
+          name: prevState.name,
+          number: prevState.number,
+        },
+      ],
+    }));
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -33,15 +53,14 @@ class App extends Component {
           color: '#010101',
         }}
       >
-        <Section title="Phonebook">
-          <InputForm
-            onSubmit={this.onFormSubmit}
-            onInput={this.onInputChange}
-          />
-        </Section>
-        <Section title="Contacts">
-          <ContactList />
-        </Section>
+        <Section title="Phonebook" />
+        <InputForm onSubmit={this.onFormSubmit} />
+        <Section title="Contacts" />
+        <Filter onInput={this.onInputChange} filter={this.filter} />
+        <ContactList
+          options={this.state.contacts}
+          filter={this.state.filter.toLowerCase()}
+        />
       </div>
     );
   }
