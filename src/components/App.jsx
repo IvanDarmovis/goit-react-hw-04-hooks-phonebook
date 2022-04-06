@@ -20,8 +20,7 @@ class App extends Component {
 
   onInputChange = ev => {
     this.setState({ [ev.currentTarget.name]: ev.currentTarget.value });
-    console.log(ev.currentTarget.name);
-    console.log(ev.currentTarget.value);
+    console.log(this.state);
   };
 
   onFormSubmit = ev => {
