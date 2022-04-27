@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import s from './InputForm.module.css';
 
 class InputForm extends Component {
   state = {
@@ -17,12 +18,13 @@ class InputForm extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <form onSubmit={this.onFormSubmit}>
-        <label>
+        <label className={s.label}>
           Name
           <input
+            className={s.labelInput}
             onChange={this.onInputChange}
             type="text"
             name="name"
@@ -32,9 +34,10 @@ class InputForm extends Component {
             required
           />
         </label>
-        <label>
+        <label className={s.label}>
           Number
           <input
+            className={s.labelInput}
             onChange={this.onInputChange}
             type="tel"
             name="number"
@@ -44,7 +47,9 @@ class InputForm extends Component {
             required
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button type="submit" className={s.formBtn}>
+          Add contact
+        </button>
       </form>
     );
   }

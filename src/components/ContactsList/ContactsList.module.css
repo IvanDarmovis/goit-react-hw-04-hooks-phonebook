@@ -1,0 +1,20 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  margin-top: 10px;
+}
+
+.deleteBtn {
+  display: inline-block;
+  font-size: 18px;
+  background-color: transparent;
+  border-radius: 10px;
+  border-color: aquamarine;
+  outline-color: aquamarine;
+
+  margin-left: 15px;
+}

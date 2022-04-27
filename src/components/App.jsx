@@ -21,6 +21,10 @@ class App extends Component {
   };
 
   onFormSubmit = data => {
+    if (this.state.contacts.find(el => el.name === data.name)) {
+      alert(`${data.name} is already in the list`);
+      return;
+    }
     this.setState(prevState => ({
       contacts: [
         ...prevState.contacts,
@@ -32,6 +36,12 @@ class App extends Component {
     }));
   };
 
+  onDeleteBtn = ev => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(el => el.id !== ev.target.name),
+    }));
+  };
+
   render() {
     return (
       <div
@@ -40,10 +50,9 @@ class App extends Component {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          textTransform: 'uppercase',
+          fontSize: 32,
           color: '#010101',
+          marginLeft: 40,
         }}
       >
         <Section title="Phonebook" />
@@ -53,6 +62,7 @@ class App extends Component {
         <ContactList
           options={this.state.contacts}
           filter={this.state.filter.toLowerCase()}
+          onDeleteClick={this.onDeleteBtn}
         />
       </div>
     );
