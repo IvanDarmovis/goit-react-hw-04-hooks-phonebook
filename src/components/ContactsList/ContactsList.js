@@ -29,7 +29,13 @@ class ContactList extends Component {
 export default ContactList;
 
 ContactList.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   filter: PropTypes.string,
   onDeleteClick: PropTypes.func.isRequired,
 };

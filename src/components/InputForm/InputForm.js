@@ -58,5 +58,5 @@ class InputForm extends Component {
 export default InputForm;
 
 InputForm.propTypes = {
-  onInput: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
