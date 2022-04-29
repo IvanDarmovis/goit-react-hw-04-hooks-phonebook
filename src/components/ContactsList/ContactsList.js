@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import s from './ContactsList.module.css';
 
 class ContactList extends Component {
@@ -7,13 +8,13 @@ class ContactList extends Component {
       <ul className={s.list}>
         {this.props.options
           .filter(el => el.name.toLowerCase().includes(this.props.filter))
-          .map(el => (
-            <li className={s.listItem} key={el.id}>
-              {el.name}: {el.number}
+          .map(({ id, name, number }) => (
+            <li className={s.listItem} key={id}>
+              {name}: {number}
               <button
                 className={s.deleteBtn}
                 onClick={this.props.onDeleteClick}
-                name={el.id}
+                name={id}
                 type="button"
               >
                 Delete
@@ -26,3 +27,9 @@ class ContactList extends Component {
 }
 
 export default ContactList;
+
+ContactList.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.shape(PropTypes.string)).isRequired,
+  filter: PropTypes.string,
+  onDeleteClick: PropTypes.func.isRequired,
+};

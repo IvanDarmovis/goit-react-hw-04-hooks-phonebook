@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import s from './InputForm.module.css';
 
 class InputForm extends Component {
@@ -18,7 +19,6 @@ class InputForm extends Component {
   };
 
   render() {
-    // console.log(this.props);
     return (
       <form onSubmit={this.onFormSubmit}>
         <label className={s.label}>
@@ -56,3 +56,7 @@ class InputForm extends Component {
 }
 
 export default InputForm;
+
+InputForm.propTypes = {
+  onInput: PropTypes.func.isRequired,
+};
