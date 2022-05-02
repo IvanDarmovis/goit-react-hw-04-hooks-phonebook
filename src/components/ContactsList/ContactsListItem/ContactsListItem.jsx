@@ -4,7 +4,7 @@ import s from './ContactsListItem.module.css';
 
 export default function ContactListItem({ id, name, number, onClick }) {
   return (
-    <li className={s.listItem} key={id}>
+    <li className={s.listItem}>
       {name}: {number}
       <button className={s.deleteBtn} onClick={onClick} name={id} type="button">
         Delete
