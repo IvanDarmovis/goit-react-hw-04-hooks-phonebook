@@ -3,7 +3,7 @@ import uniqid from 'uniqid';
 import InputForm from './InputForm/InputForm';
 import ContactList from './ContactsList/ContactsList';
 import Section from './Section/Section';
-import Filter from './ContactsList/Filter';
+import Filter from './Filter/Filter';
 
 class App extends Component {
   state = {
@@ -42,6 +42,12 @@ class App extends Component {
     }));
   };
 
+  filtered() {
+    return this.state.contacts.filter(el =>
+      el.name.toLowerCase().includes(this.state.filter)
+    );
+  }
+
   render() {
     return (
       <div
@@ -58,9 +64,9 @@ class App extends Component {
         <Section title="Phonebook" />
         <InputForm onSubmit={this.onFormSubmit} />
         <Section title="Contacts" />
-        <Filter onInput={this.onInputChange} filter={this.filter} />
+        <Filter onInput={this.onInputChange} filter={this.state.filter} />
         <ContactList
-          options={this.state.contacts}
+          options={this.filtered()}
           filter={this.state.filter.toLowerCase()}
           onDeleteClick={this.onDeleteBtn}
         />
