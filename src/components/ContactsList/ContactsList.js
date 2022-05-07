@@ -4,6 +4,8 @@ import s from './ContactsList.module.css';
 import ContactListItem from './ContactsListItem/ContactsListItem';
 
 function ContactList({ options, onDeleteClick }) {
+  if (options.length === 0)
+    return <p className={s.emptyList}>No numbers to show</p>;
   return (
     <ul className={s.list}>
       {options.map(({ id, name, number }) => (
